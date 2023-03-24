@@ -1,7 +1,10 @@
 import axios from "axios";
 
 // pages/ssr.js
-export default function SSR({ formattedDate }) {
+export default function SSR({
+  formattedDate,
+  items
+ }) {
   return (
     <>
       <h1>Server-side rendered page</h1>
@@ -11,6 +14,9 @@ export default function SSR({ formattedDate }) {
       <p>
         <a href="/">View a static page.</a>
       </p>
+      {items.map((item) => {
+        return <div>{item.name}</div>;
+      })}
     </>
   );
 }
@@ -19,7 +25,6 @@ export async function getServerSideProps() {
   const response = await axios.request({
     url: "https://uowkd9faw9.execute-api.eu-west-2.amazonaws.com/staging/items"
   });
-  console.log("Got response...", response.data);
   const renderDate = Date.now();
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     dateStyle: "long",
@@ -28,5 +33,10 @@ export async function getServerSideProps() {
   console.log(
     `SSR ran on ${formattedDate}. This will be logged in CloudWatch.`
   );
-  return { props: { formattedDate } };
+  return {
+    props: {
+      formattedDate,
+      items: response.data,
+    }
+  };
 }
