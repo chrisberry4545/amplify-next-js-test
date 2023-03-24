@@ -21,6 +21,9 @@ exports.handler = async (event) => {
             },
             {
                 name: "name2"
+            },
+            {
+                name: "name3"
             }
         ]),
     };
