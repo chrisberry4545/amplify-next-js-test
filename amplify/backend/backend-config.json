@@ -20,6 +20,45 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    },
+    "api95c0d0fc": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "amplifynextjstestdae45b0b"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "amplifynextjstestdae45b0b": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_amplifynextjstestdae45b0b_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifynextjstestdae45b0b"
+        }
+      ]
+    },
+    "AMPLIFY_function_amplifynextjstestdae45b0b_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifynextjstestdae45b0b"
+        }
+      ]
     }
   }
 }

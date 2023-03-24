@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // pages/ssr.js
 export default function SSR({ formattedDate }) {
   return (
@@ -14,6 +16,10 @@ export default function SSR({ formattedDate }) {
 }
 
 export async function getServerSideProps() {
+  const response = await axios.request({
+    url: "https://uowkd9faw9.execute-api.eu-west-2.amazonaws.com/staging/items"
+  });
+  console.log("Got response...", response.data);
   const renderDate = Date.now();
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     dateStyle: "long",
